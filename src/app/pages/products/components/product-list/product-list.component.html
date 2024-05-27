@@ -1,0 +1,27 @@
+<div class="container px-3">
+    <h2 class="m-0 text-bold-700 ">Products</h2>
+    <!-- <div class="flex align-items-center mt-2 max-w-full">
+        <div class="col-9">
+            <p-breadcrumb class="max-w-full" [model]="items" [home]="home" />
+        </div>
+        <div class=" col-3 text-end pe-5">
+            <p-button label="Adicionar produto" severity="secondary" />
+        </div>
+    </div> -->
+    <div class="grid nested-grid">
+        <div class="col-10">
+            <p-breadcrumb class="max-w-full" [model]="items" [home]="home" />
+        </div>
+        <div class="col-2 text-end">
+            <p-button label="Adicionar produto" severity="secondary" class="w-full" [routerLink]="['edit']" />
+        </div>
+    </div>
+    <div class="grid-products mt-3">
+        <div *ngFor="let item of [1,2,3,4,5,6,7,8,9,10,11,12]">
+            <app-thumbnail-products />
+        </div>
+        <!-- @for (product of products; track product.id) {
+        <app-thumbnail-products [products]="products" />
+        } -->
+    </div>
+</div>

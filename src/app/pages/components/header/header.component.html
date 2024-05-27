@@ -1,0 +1,14 @@
+<p-toolbar>
+    <div class="p-toolbar-group-start">
+        <p-button icon="pi pi-bars" (click)="showAndHideMenu.emit(true)" severity="danger" [rounded]="true" [text]="true" />
+    </div>
+    <div class="p-toolbar-group-center">
+        <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input pInputText placeholder="Search" />
+        </span>
+    </div>
+    <div class="p-toolbar-group-end">
+        <img src="../../../../assets/images/logo.svg" alt="I mports logo" width="50" height="50">
+    </div>
+</p-toolbar>

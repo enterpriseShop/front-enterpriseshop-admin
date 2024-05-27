@@ -1,0 +1,85 @@
+<div class="sidebar_menu">
+
+    <div class="logo" [ngClass]="{ 'sidebar-open': isSidebarOpen }">
+        <i class='pi pi-android'></i>
+        <div class="text_logo">Imports</div>
+    </div>
+
+    <ul class="nav_item">
+
+        <li>
+            <a [routerLink]="['/dashboard']">
+                <i class='pi pi-th-large'></i>
+                <span class="item_name">Dashboard</span>
+            </a>
+            <span class="menu_btn">Dashboard</span>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class='pi pi-users'></i>
+                <span class="item_name">People</span>
+            </a>
+            <span class="menu_btn">People</span>
+        </li>
+
+        <li>
+            <a [routerLink]="['/dashboard/products']">
+                <i class='pi pi-box'></i>
+                <span class="item_name">Products</span>
+            </a>
+            <span class="menu_btn">Products</span>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class='pi pi-comment'></i>
+                <span class="item_name">Workflows</span>
+            </a>
+            <span class="menu_btn">Workflows</span>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class='pi pi-refresh'></i>
+                <span class="item_name">Updates</span>
+            </a>
+            <span class="menu_btn">Updates</span>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class='pi pi-hammer'></i>
+                <span class="item_name">Plug-ins</span>
+            </a>
+            <span class="menu_btn">Plug-ins</span>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class='pi pi-bell'></i>
+                <span class="item_name">Notifications</span>
+            </a>
+            <span class="menu_btn">Notifications</span>
+        </li>
+
+        <li class="details">
+            <div class="child_details">
+                <img src="https://br.web.img3.acsta.net/pictures/15/06/15/15/34/437410.jpg" alt="">
+                <div class="name_roll">
+                    <div class="name">Suraj kumar</div>
+                    <div class="roll">Developer</div>
+                </div>
+            </div>
+            <i class='pi pi-arrow-circle-right' id="log_out"></i>
+        </li>
+    </ul>
+
+</div>
+
+<section class="dashboard_text">
+    <app-header (showAndHideMenu)="crtlMenu($event)" />
+    <div class="p-2 w-full">
+        <router-outlet />
+    </div>
+</section>

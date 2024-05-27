@@ -1,0 +1,16 @@
+<div class="flex flex-column">
+    <h1 class="text-primary text-center">Esqueci a senha</h1>
+    <div class="flex flex-column gap-2 mb-3">
+        <label for="user-email text-xs">Informe o e-mail cadastrado para poder redefinir sua senha</label>
+        <input pInputText id="user-email" aria-describedby="login-email" />
+    </div>
+
+    <div class="flex">
+        <div class="flex-1 card-center font-bold m-2 px-5 py-3">
+            <button [routerLink]="['/']" pButton pRipple label="Voltar" [outlined]="true" class="p-button-danger w-full" size="small"> </button>
+        </div>
+        <div class="flex-1 card-center font-bold m-2 px-5 py-3">
+            <button [routerLink]="['/dashboard']" pButton pRipple label="Enviar" class="p-button-success w-full" size="small"> </button>
+        </div>
+    </div>
+</div>

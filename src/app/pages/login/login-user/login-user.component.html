@@ -1,0 +1,20 @@
+<div class="flex flex-column">
+    <h1 class="text-primary text-center">LOGIN</h1>
+    <div class="flex flex-column gap-2 mb-3">
+        <label for="user-email">E-mail</label>
+        <input pInputText id="user-email" aria-describedby="login-email" />
+    </div>
+
+    <div class="flex flex-column gap-2">
+        <label for="user-password">Senha</label>
+        <input pInputText id="user-password" aria-describedby="login-password" />
+    </div>
+    <a [routerLink]="['forgot-password']" class="p-menuitem-link text-right">
+        <span class="text-xs text-primary">Esqueceu a senha?</span>
+    </a>
+
+    <div class="mt-4 text-right p-4">
+        <button [routerLink]="['/dashboard']" pButton pRipple label="Login" class="p-button-success w-full" size="small">
+        </button>
+    </div>
+</div>

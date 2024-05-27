@@ -1,0 +1,42 @@
+<div class="flex flex-column gap-2">
+    <label for="productName">Nome do produto</label>
+    <input pInputText id="productName" aria-describedby="product-name" placeholder="Produto A" />
+    @if (errorFielfd) {
+    <small id="product-name">
+        Enter your username to reset your password.
+    </small>
+    }
+</div>
+<div class="flex flex-column gap-2 mt-3">
+    <label for="productDescription">Description</label>
+    <textarea id="productDescription" rows="5" cols="30" pInputTextarea></textarea>
+</div>
+<div class="flex flex-column gap-2 mb-3 mt-3 w-full">
+    <p-dropdown class="w-full" [options]="cities" [(ngModel)]="selectedCity" optionLabel="name"
+        placeholder="Select a City" />
+</div>
+<div class="grid">
+    <div class="col-12 lg:col-6 sm:col-6">
+        <div class="flex flex-column gap-2 mb-3">
+            <label for="productPrice">Preço</label>
+            <input class="w-full" pInputText id="productPrice" aria-describedby="product-name" placeholder="0.00" />
+            @if (errorFielfd) {
+            <small id="product-name">
+                Enter your username to reset your password.
+            </small>
+            }
+        </div>
+    </div>
+
+    <div class="col-12 lg:col-6 sm:col-6">
+        <div class="flex flex-column gap-2 mb-3">
+            <label for="productPrice">Estoque</label>
+            <input pInputText id="productPrice" aria-describedby="product-name" placeholder="0.00" />
+            @if (errorFielfd) {
+            <small id="product-name">
+                Enter your username to reset your password.
+            </small>
+            }
+        </div>
+    </div>
+</div>
