@@ -1,42 +1,60 @@
-<div class="flex flex-column gap-2">
-    <label for="productName">Nome do produto</label>
-    <input pInputText id="productName" aria-describedby="product-name" placeholder="Produto A" />
-    @if (errorFielfd) {
-    <small id="product-name">
-        Enter your username to reset your password.
-    </small>
-    }
-</div>
-<div class="flex flex-column gap-2 mt-3">
-    <label for="productDescription">Description</label>
-    <textarea id="productDescription" rows="5" cols="30" pInputTextarea></textarea>
-</div>
-<div class="flex flex-column gap-2 mb-3 mt-3 w-full">
-    <p-dropdown class="w-full" [options]="cities" [(ngModel)]="selectedCity" optionLabel="name"
-        placeholder="Select a City" />
-</div>
-<div class="grid">
-    <div class="col-12 lg:col-6 sm:col-6">
-        <div class="flex flex-column gap-2 mb-3">
-            <label for="productPrice">Preço</label>
-            <input class="w-full" pInputText id="productPrice" aria-describedby="product-name" placeholder="0.00" />
-            @if (errorFielfd) {
-            <small id="product-name">
-                Enter your username to reset your password.
-            </small>
-            }
+<form [formGroup]="productForm">
+    <div class="flex flex-column gap-2">
+        <label for="productName">Nome do produto</label>
+        <input formControlName="product_name" pInputText id="productName" aria-describedby="product-name"
+            placeholder="Produto A" />
+        @if (errorFielfd) {
+        <small id="product-name">
+            Enter your username to reset your password.
+        </small>
+        }
+    </div>
+    <div class="flex flex-column gap-2 mt-3">
+        <label for="productDescription">Description</label>
+        <textarea formControlName="product_description" id="productDescription" rows="5" cols="30"
+            pInputTextarea></textarea>
+    </div>
+    <div class="grid">
+        <div class="col-12 lg:col-6 sm:col-6">
+            <div class="flex flex-column gap-2 mb-3 mt-3 w-full">
+                <label for="productStatus">Status do produto</label>
+                <p-dropdown id="productStatus" class="w-full" formControlName="product_status" [options]="status"
+                    optionLabel="name" dataKey="name" [style]="{'width': '100%'}" placeholder="Status do produto" />
+            </div>
+        </div>
+        <div class="col-12 lg:col-6 sm:col-6">
+            <div class="flex flex-column gap-2 mb-3 mt-3 w-full">
+                <label for="productCategory">Categoria do produto</label>
+                <p-dropdown id="productCategory" class="w-full" formControlName="product_category" [options]="category"
+                    optionLabel="name" dataKey="name" [style]="{'width': '100%'}" placeholder="Categorias" />
+            </div>
         </div>
     </div>
+    <div class="grid">
+        <div class="col-12 lg:col-6 sm:col-6">
+            <div class="flex flex-column gap-2 mb-3">
+                <label for="productPrice">Preço</label>
+                <input formControlName="product_price" class="w-full" pInputText id="productPrice"
+                    aria-describedby="product-price" placeholder="0.00" />
+                @if (errorFielfd) {
+                <small id="product-price">
+                    Enter your username to reset your password.
+                </small>
+                }
+            </div>
+        </div>
 
-    <div class="col-12 lg:col-6 sm:col-6">
-        <div class="flex flex-column gap-2 mb-3">
-            <label for="productPrice">Estoque</label>
-            <input pInputText id="productPrice" aria-describedby="product-name" placeholder="0.00" />
-            @if (errorFielfd) {
-            <small id="product-name">
-                Enter your username to reset your password.
-            </small>
-            }
+        <div class="col-12 lg:col-6 sm:col-6">
+            <div class="flex flex-column gap-2 mb-3">
+                <label for="productstock">Estoque</label>
+                <input formControlName="product_stock" pInputText id="productstock" aria-describedby="product-name"
+                    placeholder="0.00" />
+                @if (errorFielfd) {
+                <small id="product-name">
+                    Enter your username to reset your password.
+                </small>
+                }
+            </div>
         </div>
     </div>
-</div>
+</form>

@@ -1,0 +1,55 @@
+<div class="grid nested-grid mt-2 mb-3">
+    <div class="col-7">
+        <app-breadcrumb />
+    </div>
+    <div class="col-2">
+        <p-dropdown [style]="{'width':'100%'}" [options]="status" [(ngModel)]="selectedStatus" optionLabel="name"
+            placeholder="Status" />
+    </div>
+    <div class="col-3 text-center">
+        <p-button [style]="{'width':'auto'}" label="Adicionar categoria" severity="secondary" class="w-full"
+            [routerLink]="['edit']" />
+    </div>
+</div>
+<div class="px-3">
+    <p-table [value]="category">
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="id" style="width:10%">
+                    ID <p-sortIcon field="id" />
+                </th>
+                <th pSortableColumn="image" style="width:5%">
+                    Imagem
+                </th>
+                <th pSortableColumn="name" style="width:25%">
+                    Nome <p-sortIcon field="name" />
+                </th>
+                <th pSortableColumn="qt_products" style="width:20%">
+                    Total produtos <p-sortIcon field="qt_products" />
+                </th>
+                <th pSortableColumn="status.name" style="width:20%">
+                    Status <p-sortIcon field="status.name" />
+                </th>
+                <th style="width:20%" class="text-center">
+                    Ações
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-category>
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>
+                    <p-avatar [image]="category.image"
+                        styleClass="mr-2" size="large" shape="circle" />
+                </td>
+                <td>{{ category.name }}</td>
+                <td>{{ category.qt_products }}</td>
+                <td> <span [ngClass]="['status-' + category.status.slug]">{{ category.status.name }}</span> </td>
+                <td class="flex justify-content-center">
+                    <p-button icon="pi pi-trash" label="Excluir" class="mr-1" severity="secondary" />
+                    <p-button icon="pi pi-pencil" label="Editar" />
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

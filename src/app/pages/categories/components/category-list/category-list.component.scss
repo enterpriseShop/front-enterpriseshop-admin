@@ -1,0 +1,31 @@
+:host ::ng-deep {
+    .p-progressbar {
+        height: .5rem;
+        background-color: #D8DADC;
+    
+        .p-progressbar-value {
+            background-color: #607D8B;
+        }
+    }
+}
+
+$statusColors: (
+    "active": #2ed47e,
+    "inactive": #e10e0e,
+    "suspended": #efba0d
+);
+
+@each $name, $color in $statusColors {
+    $bkColor: #{$color + '25'};
+    $bdColor:#{$color + '50'};
+    .status-#{$name} {
+        background: $bkColor;
+        font-size: 12px;
+        color:  $color;
+        padding: 3px 10.24px;
+        border-radius: 3px;
+        text-transform: uppercase;
+        font-weight: 700;
+        border: 2px solid $bdColor;
+    }
+}

@@ -12,3 +12,7 @@
     background-color: yellowgreen;
     border-radius: 50%;
 }
+
+::ng-deep .p-card .p-card-title {
+    height: 95px;
+}
