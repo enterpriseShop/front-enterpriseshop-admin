@@ -12,12 +12,13 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { MessageService } from 'primeng/api';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { Product } from '../../../../models/Products.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ProductsService } from '../../../../services/products/products.service';
 import { CategoriesService } from '../../../../services/categories/categories.service';
 import { Category } from '../../../../models/Category.model';
 import { StatusService } from '../../../../services/status/status.service';
 import { Status } from '../../../../models/Status.model';
+import { DataRxjsService } from '../../../../services/rxjs/data-rxjs.service';
 
 @Component({
   selector: 'app-product-form',
@@ -35,7 +36,8 @@ import { Status } from '../../../../models/Status.model';
     BadgeModule,
     NgClass,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    RouterLink
   ],
   providers: [MessageService],
   templateUrl: './product-form.component.html',
@@ -55,11 +57,12 @@ export class ProductFormComponent implements OnInit {
   files = [];
 
   totalSize: number = 0;
-  // product_id: number = 0;
+  // id: number = 0;
   totalSizePercent: number = 0;
 
   constructor(
     private fb: FormBuilder,
+    private rxjs: DataRxjsService,
     private actvRoute: ActivatedRoute,
     private statusService: StatusService,
     private prodService: ProductsService,
@@ -78,16 +81,24 @@ export class ProductFormComponent implements OnInit {
         }, 1500);
       }
     });
+
+    this.productForm.statusChanges.subscribe(newStaus => {
+      if (newStaus === 'VALID') {
+        setTimeout(() => {
+          this.rxjs.sendValidationForm(this.productForm.value);
+        }, 2000);
+      }
+    });
   }
 
   initForm() {
     this.productForm = this.fb.group({
-      product_name: ['', [Validators.required]],
-      product_description: ['', [Validators.required]],
-      product_price: ['', [Validators.required]],
-      product_stock: ['', [Validators.required]],
-      product_status: ['', [Validators.required]],
-      product_category: ['', [Validators.required]],
+      title: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      price: ['', [Validators.required]],
+      stock: ['', [Validators.required]],
+      status: ['', [Validators.required]],
+      category: ['', [Validators.required]],
     });
   }
 
@@ -96,12 +107,12 @@ export class ProductFormComponent implements OnInit {
       next: (data) => {
         let statusFiltered: Status[] = [];
         data.forEach((item: Status) => {
-          if (!item.enabled.includes("products")) {
+          if (item.enabled.includes("products")) {
             statusFiltered.push(item);
           }
         });
         this.status = statusFiltered;
-        // console.log('GET ALL STATUS DATA:', data);
+        console.log('GET ALL STATUS DATA:', data);
       },
       error: (err) => {
         console.log('GET ALL STATUS ERR:', err);
@@ -113,7 +124,7 @@ export class ProductFormComponent implements OnInit {
     this.catService.getAllCategories().subscribe({
       next: (data) => {
         this.category = data;
-        console.log('GET ALL CATEGORY DATA:', data);
+        // console.log('GET ALL CATEGORY DATA:', data);
       },
       error: (err) => {
         console.log('GET ALL CATEGORY ERR:', err);
@@ -121,10 +132,24 @@ export class ProductFormComponent implements OnInit {
     });
   }
 
-  productById(product_id: number) {
-    this.prodService.getProductsById(product_id).subscribe({
+  createObjImagesRender(images: string[]) {
+    let imageForRender: any[] = [];
+    images.forEach((item: any, idx: number) => {
+      imageForRender.push({
+        name: `Imagem DB ${(idx + 1)}`,
+        type: String(item.split('.').reverse()[0]),
+        size: 0.0,
+        url: item
+      });
+    });
+    this.rxjs.sendImagesToPreview(imageForRender);
+  }
+
+  productById(id: number) {
+    this.prodService.getProductsById(id).subscribe({
       next: (data) => {
         this.product = data;
+        this.createObjImagesRender(data.images);
         this.updateFormProduct(data);
       },
       error: (err) => {
@@ -135,24 +160,12 @@ export class ProductFormComponent implements OnInit {
 
   updateFormProduct(product: Product) {
     this.productForm.patchValue({
-      product_name: product.title,
-      product_description: product.description,
-      product_price: product.price,
-      product_stock: product.stock,
-      product_category: product.category,
-      product_status: product.status
-    });
-    console.log("ESTOU UPDATE FORM PRODUCT", this.productForm.value, product);
-  }
-
-  createProduct() {
-    this.prodService.createProduct(this.productForm.value).subscribe({
-      next: (data) => {
-        this.product = data;
-      },
-      error: (err) => {
-        console.log('PRODUCT BY ID ERR:', err);
-      }
+      title: product.title,
+      description: product.description,
+      price: product.price,
+      stock: product.stock,
+      category: product.category,
+      status: product.status
     });
   }
 

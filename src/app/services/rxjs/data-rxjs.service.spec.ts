@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DataRsjsService } from './data-rsjs.service';
+import { DataRxjsService } from './data-rxjs.service';
 
-describe('DataRsjsService', () => {
-  let service: DataRsjsService;
+describe('DataRxjsService', () => {
+  let service: DataRxjsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(DataRsjsService);
+    service = TestBed.inject(DataRxjsService);
   });
 
   it('should be created', () => {

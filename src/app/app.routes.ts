@@ -55,7 +55,7 @@ export const routes: Routes = [
             loadComponent: () => import('./pages/categories/components/category-edit/category-edit.component').then(c => c.CategoryEditComponent),
           }
         ]
-      }
+      },
     ]
   },
 ];

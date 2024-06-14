@@ -1,0 +1,56 @@
+$theme: #454cad;
+$dark-text: #5f6982;
+
+.uploaded {
+    // margin: 30px 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: $theme;
+}
+
+.show-files-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+    padding: 10px 15px;
+    box-shadow: #0000000d 0px 0px 0px 1px,
+    #d1d5db3d 0px 0px 0px 1px inset;
+    // min-height: 90px;
+}
+
+.show-files-box .left {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.show-files-box .file-type {
+    background-color: $theme;
+    color: #FFF;
+    padding: 5px 10px;
+    text-transform: capitalize;
+    font-weight: 700;
+    border-radius: 3px;
+    font-size: 13px;
+}
+
+.show-files-box .file-title {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.show-files-box .rigth .check-file {
+    background-color: #256320;
+    color: #FFF;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    line-height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    border-radius: 50%;
+}

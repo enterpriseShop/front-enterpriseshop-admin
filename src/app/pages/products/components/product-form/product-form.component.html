@@ -1,7 +1,7 @@
 <form [formGroup]="productForm">
     <div class="flex flex-column gap-2">
         <label for="productName">Nome do produto</label>
-        <input formControlName="product_name" pInputText id="productName" aria-describedby="product-name"
+        <input formControlName="title" pInputText id="productName" aria-describedby="product-name"
             placeholder="Produto A" />
         @if (errorFielfd) {
         <small id="product-name">
@@ -11,21 +11,21 @@
     </div>
     <div class="flex flex-column gap-2 mt-3">
         <label for="productDescription">Description</label>
-        <textarea formControlName="product_description" id="productDescription" rows="5" cols="30"
+        <textarea formControlName="description" id="productDescription" rows="5" cols="30"
             pInputTextarea></textarea>
     </div>
     <div class="grid">
         <div class="col-12 lg:col-6 sm:col-6">
             <div class="flex flex-column gap-2 mb-3 mt-3 w-full">
                 <label for="productStatus">Status do produto</label>
-                <p-dropdown id="productStatus" class="w-full" formControlName="product_status" [options]="status"
+                <p-dropdown id="productStatus" class="w-full" formControlName="status" [options]="status"
                     optionLabel="name" dataKey="name" [style]="{'width': '100%'}" placeholder="Status do produto" />
             </div>
         </div>
         <div class="col-12 lg:col-6 sm:col-6">
             <div class="flex flex-column gap-2 mb-3 mt-3 w-full">
                 <label for="productCategory">Categoria do produto</label>
-                <p-dropdown id="productCategory" class="w-full" formControlName="product_category" [options]="category"
+                <p-dropdown id="productCategory" class="w-full" formControlName="category" [options]="category"
                     optionLabel="name" dataKey="name" [style]="{'width': '100%'}" placeholder="Categorias" />
             </div>
         </div>
@@ -34,7 +34,7 @@
         <div class="col-12 lg:col-6 sm:col-6">
             <div class="flex flex-column gap-2 mb-3">
                 <label for="productPrice">Preço</label>
-                <input formControlName="product_price" class="w-full" pInputText id="productPrice"
+                <input formControlName="price" class="w-full" pInputText id="productPrice"
                     aria-describedby="product-price" placeholder="0.00" />
                 @if (errorFielfd) {
                 <small id="product-price">
@@ -47,7 +47,7 @@
         <div class="col-12 lg:col-6 sm:col-6">
             <div class="flex flex-column gap-2 mb-3">
                 <label for="productstock">Estoque</label>
-                <input formControlName="product_stock" pInputText id="productstock" aria-describedby="product-name"
+                <input formControlName="stock" pInputText id="productstock" aria-describedby="product-name"
                     placeholder="0.00" />
                 @if (errorFielfd) {
                 <small id="product-name">
