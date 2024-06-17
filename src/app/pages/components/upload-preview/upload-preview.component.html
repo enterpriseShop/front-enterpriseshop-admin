@@ -1,0 +1,24 @@
+@if (previews.length > 0) {
+<div id="file-wapper" class="w-100">
+    <h3 class="uploaded mb-4 text-center">Imagens selecionadas</h3>
+    <div class="grid">
+        @for (preview of previews; track $index) {
+        <div class="col-6">
+            <div class="show-files-box border w-100" style="background: #FFF;">
+                <div class="left">
+                    <img [src]="preview.url" class="preview-image" width="80px" />
+                    <div class="flex-column align-items-center justify-content-center ms-3">
+                        <p class="file-type text-center">{{ preview.type }}</p>
+                        <p class="m-0 file-title">{{ preview.name }}</p>
+                        <p class="m-0 file-size">{{ preview.size }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="rigth">
+                <span class="check-file"><i class="ri-check-line"></i></span>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+}

@@ -13,15 +13,19 @@
             <p-breadcrumb class="max-w-full" [model]="items" [home]="home" />
         </div>
         <div class="col-2 text-end">
-            <p-button label="Adicionar produto" severity="secondary" class="w-full" [routerLink]="['edit']" />
+            <p-button label="Adicionar produto" severity="secondary" class="w-full" [routerLink]="['edit']"
+                [queryParams]="{ action: 'create' }" />
         </div>
     </div>
+    <div class="flex align-items-center justify-content-end" [style]="{'background': '#FFF', 'font-size': '13px'}">
+        <span class="mx-1 text-color">Itens por página: </span>
+        <p-dropdown [options]="options" optionLabel="label" optionValue="value" (onChange)="dropChange($event)" [(ngModel)]="rows" (ngModelChange)="first = 0" />
+        <p-paginator [first]="first" [rows]="rows" [totalRecords]="totalRecords" (onPageChange)="onPageChange($event)" [showCurrentPageReport]="true"
+            currentPageReportTemplate="{first} - {last} de {totalRecords}" [showPageLinks]="false" [showFirstLastIcon]="false" ></p-paginator>
+    </div>
     <div class="grid-products mt-3">
-        <div *ngFor="let item of [1,2,3,4,5,6,7,8,9,10,11,12]">
-            <app-thumbnail-products />
-        </div>
-        <!-- @for (product of products; track product.id) {
-        <app-thumbnail-products [products]="products" />
-        } -->
+        @for (product of products; track product.id) {
+        <app-thumbnail-products [products]="product" />
+        }
     </div>
 </div>

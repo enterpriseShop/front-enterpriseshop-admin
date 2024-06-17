@@ -1,18 +1,15 @@
-export interface ProductResponse {
-    id: number,
-    name: string,
-    price: number,
-    status: true,
-    rating: number,
-    cover: string,
-    description: string
-}
+import { Category } from "./Category.model";
+import { Status } from "./Status.model";
 
-export interface ProductRequest {
-    name: string,
-    price: number,
-    status: true,
-    rating: number,
-    cover: string,
-    description: string
+export interface Product {
+    id?: number;
+    title: string;
+    price: number;
+    description: string;
+    images: string[];
+    creationAt: string;
+    updatedAt: string;
+    stock: number;
+    category: Category;
+    status: Status;
 }

@@ -1,0 +1,14 @@
+<div class="input-bx">
+    <h6 class="mb-4 text-center">Imagens do produto</h6>
+    <form id="file-upload-form" class="uploader">
+        <input [disabled]="countImages >= numMaxImages" id="upload" type="file" name="file-upload" multiple accept="image/*" (change)="onSelectFile($event)"
+            hidden />
+        <label for="upload" class="upload-label">
+            <span><i class="ri-upload-cloud-line"></i></span>
+            <p class="m-0 py-3">Select a file or drag here</p>
+        </label>
+    </form>
+    @if (countImages >= numMaxImages) {
+        <small class="max-image text-rigth">Número máximo de imagens para upload atingido!</small>
+    }
+</div>

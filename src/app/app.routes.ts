@@ -42,6 +42,20 @@ export const routes: Routes = [
           }
         ]
       },
+      {
+        path: 'categories',
+        loadComponent: () => import('./pages/categories/category-default/category-default.component').then(c => c.CategoryDefaultComponent),
+        children: [
+          {
+            path: '',
+            loadComponent: () => import('./pages/categories/components/category-list/category-list.component').then(c => c.CategoryListComponent),
+          },
+          {
+            path: 'edit',
+            loadComponent: () => import('./pages/categories/components/category-edit/category-edit.component').then(c => c.CategoryEditComponent),
+          }
+        ]
+      },
     ]
   },
 ];
