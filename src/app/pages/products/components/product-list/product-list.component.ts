@@ -71,11 +71,8 @@ export class ProductListComponent implements OnInit {
   getAllProducts() {
     this.productService.getAllProducts(this.page, this.perPage).subscribe({
       next: (data) => {
-        this.products = data.data;
-
-        this.first = data.first;
-        this.rows = data.pages;
-        this.totalRecords = data.items;
+        // this.products = data.data; // cpm db.json server
+        this.products = data;
         console.log("GET ALL PRODUCTS DATA", data);
       },
       error: (err) => {

@@ -9,8 +9,7 @@ import { Pagination } from '../../models/Pagination.model';
 })
 export class ProductsService {
 
-  // private url: string = environment.BASE_URL;
-  private url: string = 'http://localhost:3000';
+  private url: string = environment.BASE_URL;
   private uri: string = 'api/v1';
   private flag: string = 'products'
 
@@ -19,9 +18,13 @@ export class ProductsService {
   ) { }
 
   getAllProducts(page: number, perPage: number) {
-    // return this.http.get<Product[]>(`${this.url}/${this.uri}/${this.flag}`);
-    return this.http.get<Pagination<Product>>(`${this.url}/${this.flag}?_page=${page}&_per_page=${perPage}`);
+    return this.http.get<Product[]>(`${this.url}/${this.flag}?_page=${page}&_per_page=${perPage}`);
   }
+
+  // COM PAGINAÇÃO INTERFACE
+  // getAllProducts(page: number, perPage: number) {
+  //   return this.http.get<Pagination<Product>>(`${this.url}/${this.flag}?_page=${page}&_per_page=${perPage}`);
+  // }
 
   getProductsById(product_id: number) {
     // return this.http.get<Product[]>(`${this.url}/${this.uri}/${this.flag}`);
