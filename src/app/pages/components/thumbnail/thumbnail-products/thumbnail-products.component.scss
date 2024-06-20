@@ -14,5 +14,7 @@
 }
 
 ::ng-deep .p-card .p-card-title {
-    height: 95px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }

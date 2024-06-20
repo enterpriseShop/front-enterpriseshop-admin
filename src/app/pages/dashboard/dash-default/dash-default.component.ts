@@ -9,41 +9,53 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { StyleClassModule } from 'primeng/styleclass';
 import { HeaderComponent } from '../../components/header/header.component';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { MenuList } from '../../../models/Generics.model';
 
 
 @Component({
   selector: 'app-dash-default',
   standalone: true,
-  imports: [RouterLink, RouterOutlet, HeaderComponent, SidebarModule, ButtonModule, AvatarModule, RippleModule, StyleClassModule, NgClass, ToolbarModule],
+  imports: [
+    RouterLink,
+    RouterOutlet,
+    HeaderComponent,
+    SidebarModule,
+    ButtonModule,
+    AvatarModule,
+    RippleModule,
+    StyleClassModule,
+    NgClass,
+    ToolbarModule
+  ],
   templateUrl: './dash-default.component.html',
   styleUrl: './dash-default.component.scss'
 })
 export class DashDefaultComponent {
 
   isSidebarOpen: boolean = false;
+  sidebarVisible: boolean = false;
 
-  toggleSidebar() {
-    this.isSidebarOpen = !this.isSidebarOpen;
-    this.menuBtnChange();
-    const sidebarMenu = document.querySelector(".sidebar_menu");
-    if (sidebarMenu) {
-      sidebarMenu.classList.toggle("open", this.isSidebarOpen);
+  menu: MenuList[] = [
+    {
+      label: "Dashboard",
+      router: "/dashboard",
+      icon: "ri-dashboard-line mr-2"
+    },
+    {
+      label: "Produtos",
+      router: "products",
+      icon: "ri-box-3-line mr-2"
+    },
+    {
+      label: "Categorias",
+      router: "categories",
+      icon: "ri-list-unordered mr-2"
     }
-  }
-
-  menuBtnChange() {
-    const closeBtn = document.querySelector("#button");
-    if (closeBtn) {
-      if (this.isSidebarOpen) {
-        closeBtn.classList.replace("pi-arrow-circle-left", "pi-arrow-circle-right");
-      } else {
-        closeBtn.classList.replace("pi-arrow-circle-right", "pi-arrow-circle-left");
-      }
-    }
-  }
+  ];
 
   crtlMenu(evt: any) {
-    this.toggleSidebar();
+    // this.toggleSidebar();
+    this.sidebarVisible = evt;
   }
 
 }

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
-import { BreadcrumbComponent } from '../../../components/breadcrumb/breadcrumb.component';
+import { Router, RouterLink } from '@angular/router';
 
 import { ButtonModule } from 'primeng/button';
 import { Table, TableModule } from 'primeng/table';
@@ -13,12 +12,10 @@ import { Category } from '../../../../models/Category.model';
 import { HttpClient } from '@angular/common/http';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
-
-interface Status {
-  id: number;
-  name: string;
-  slug: string;
-}
+import { BreadcrumbItems } from '../../../../models/Generics.model';
+import { BreadcrumbComponent } from '../../../components/breadcrumb/breadcrumb.component';
+import { StatusService } from '../../../../services/status/status.service';
+import { Status } from '../../../../models/Status.model';
 
 @Component({
   selector: 'app-category-list',
@@ -33,22 +30,51 @@ export class CategoryListComponent implements OnInit {
   searchValue: string | undefined;
   selectedStatus: Status | undefined;
 
-  category: Category[] = [];
-
   status: Status[] = [];
+  category: Category[] = [];
+  breadcrumb: BreadcrumbItems[] = [];
 
   constructor(
+    private router: Router,
     private http: HttpClient,
+    private statusService: StatusService,
     private catService: CategoriesService
   ) { }
 
   ngOnInit(): void {
-    this.http.get<Status[]>('http://localhost:3000/status').subscribe({
+    this.allCategories();
+    this.getAllStatus();
+    this.checkUrl();
+  }
+
+  getAllStatus() {
+    this.statusService.getAllStatus().subscribe({
       next: (data) => {
-        this.status = data;
+        let statusFiltered: Status[] = [];
+        data.forEach((item: Status) => {
+          if (item.enabled.includes("categories")) {
+            statusFiltered.push(item);
+          }
+        });
+        this.status = statusFiltered;
+        console.log('GET ALL STATUS DATA:', data, this.status);
+      },
+      error: (err) => {
+        console.log('GET ALL STATUS ERR:', err);
       }
     });
-    this.allCategories();
+  }
+
+  checkUrl() {
+    const route_url = this.router.url;
+    const urlParts = route_url.split('/');
+    let parts: any[] = [];
+    urlParts.shift();
+
+    urlParts.forEach((item: string) => {
+      parts.push({ label: item });
+    });
+    this.breadcrumb = parts;
   }
 
   allCategories() {
