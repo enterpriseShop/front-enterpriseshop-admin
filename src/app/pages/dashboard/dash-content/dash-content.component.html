@@ -1,7 +1,7 @@
-<div class="overflow-hidden">
-    <div class="flex">
-        <div class="lg:col-9 md:col-12 sm:col-12 h-card">
-            <p-card header="Simple Card" [style]="{ height: '450px' }">
+<div class="flex justify-content-center mt-3">
+    <div class="container w-11">
+        <div class="order">
+            <p-card header="Simple Card" styleClass="h-auto lg:h-full md:h-full">
                 <p>
                     Lorem ipsum dolor sit amet...
                 </p>
@@ -20,26 +20,14 @@
                 <p-divider />
             </p-card>
         </div>
-        <div class="lg:col-3 md:col-12 sm:col-12">
-            <div class="flex justify-content-between flex-column h-full m-cards">
-                <p-card header="Simple Card">
-                    <p class="m-0">
-                        Lorem ipsum dolor sit amet...
-                    </p>
-                </p-card>
-
-                <p-card header="Simple Card">
-                    <p class="m-0">
-                        Lorem ipsum dolor sit amet...
-                    </p>
-                </p-card>
-
-                <p-card header="Simple Card">
-                    <p class="m-0">
-                        Lorem ipsum dolor sit amet...
-                    </p>
-                </p-card>
-            </div>
+        <div class="mini-cards" styleClass="h-full">
+            @for (item of dashOrders; track $index) {
+            <p-card [header]="item.title" class="mr-1 mb-1">
+                <p class="m-0">
+                    {{item.info}}
+                </p>
+            </p-card>
+            }
         </div>
     </div>
 </div>

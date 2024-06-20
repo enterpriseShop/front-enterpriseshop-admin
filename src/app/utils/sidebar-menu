@@ -1,0 +1,17 @@
+export const listMenu = [
+    {
+        label: "Dashboard",
+        router: "/dashboard",
+        icon: "ri-dashboard-line mr-2"
+    },
+    {
+        label: "Produtos",
+        router: "products",
+        icon: "ri-box-3-line mr-2"
+    },
+    {
+        label: "Categorias",
+        router: "categories",
+        icon: "ri-list-unordered mr-2"
+    }
+]

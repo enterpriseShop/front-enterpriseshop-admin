@@ -7,7 +7,7 @@
     </p> -->
     <ng-template pTemplate="footer">
         <div class="flex gap-3 mt-1">
-            <p-button label="Remover" severity="secondary" class="w-full" styleClass="w-full" />
+            <p-button label="Remover" severity="secondary" class="w-full" styleClass="w-full" [routerLink]="['/dashboard/products']" />
             <p-button label="Editar" [routerLink]="['edit']" [queryParams]="{ product: products.id, action: 'update' }" class="w-full" styleClass="w-full" />
         </div>
     </ng-template>

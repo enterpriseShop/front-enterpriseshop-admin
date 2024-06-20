@@ -1,23 +1,15 @@
 <div class="container px-3">
-    <h2 class="m-0 text-bold-700 ">Products</h2>
-    <!-- <div class="flex align-items-center mt-2 max-w-full">
-        <div class="col-9">
-            <p-breadcrumb class="max-w-full" [model]="items" [home]="home" />
-        </div>
-        <div class=" col-3 text-end pe-5">
-            <p-button label="Adicionar produto" severity="secondary" />
-        </div>
-    </div> -->
+    <h2 class="m-0 text-bold-700 my-3">Products</h2>
     <div class="grid nested-grid">
-        <div class="col-10">
-            <p-breadcrumb class="max-w-full" [model]="items" [home]="home" />
+        <div class="col-12 lg:col-9 md:col-8 sm:col-12">
+            <app-breadcrumb [items]="breadcrumb" />
         </div>
-        <div class="col-2 text-end">
-            <p-button label="Adicionar produto" severity="secondary" class="w-full" [routerLink]="['edit']"
+        <div class="col-12 lg:col-3 md:col-4 sm:col-12 md:text-right sm:text-center px-3">
+            <p-button label="Adicionar produto" severity="secondary" styleClass="w-full" [routerLink]="['edit']"
                 [queryParams]="{ action: 'create' }" />
         </div>
     </div>
-    <div class="flex align-items-center justify-content-end" [style]="{'background': '#FFF', 'font-size': '13px'}">
+    <div class="flex align-items-center justify-content-end shadow-3" [style]="{'background': '#FFF', 'font-size': '13px'}">
         <span class="mx-1 text-color">Itens por página: </span>
         <p-dropdown [options]="options" optionLabel="label" optionValue="value" (onChange)="dropChange($event)" [(ngModel)]="rows" (ngModelChange)="first = 0" />
         <p-paginator [first]="first" [rows]="rows" [totalRecords]="totalRecords" (onPageChange)="onPageChange($event)" [showCurrentPageReport]="true"
@@ -27,5 +19,11 @@
         @for (product of products; track product.id) {
         <app-thumbnail-products [products]="product" />
         }
+    </div>
+    <div class="flex align-items-center justify-content-end shadow-3 my-3" [style]="{'background': '#FFF', 'font-size': '13px'}">
+        <span class="mx-1 text-color">Itens por página: </span>
+        <p-dropdown [options]="options" optionLabel="label" optionValue="value" (onChange)="dropChange($event)" [(ngModel)]="rows" (ngModelChange)="first = 0" />
+        <p-paginator [first]="first" [rows]="rows" [totalRecords]="totalRecords" (onPageChange)="onPageChange($event)" [showCurrentPageReport]="true"
+            currentPageReportTemplate="{first} - {last} de {totalRecords}" [showPageLinks]="false" [showFirstLastIcon]="false" ></p-paginator>
     </div>
 </div>

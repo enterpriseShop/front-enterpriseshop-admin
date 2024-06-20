@@ -1,14 +1,13 @@
 <div class="grid nested-grid mt-2 mb-3">
-    <div class="col-7">
-        <app-breadcrumb />
+    <div class="col-12 lg:col-7 md:col-12 sm:col-12">
+        <app-breadcrumb [items]="breadcrumb" />
     </div>
-    <div class="col-2">
+    <div class="col-12 lg:col-2 md:col-7 sm:col-12">
         <p-dropdown [style]="{'width':'100%'}" [options]="status" [(ngModel)]="selectedStatus" optionLabel="name"
             placeholder="Status" />
     </div>
-    <div class="col-3 text-center">
-        <p-button [style]="{'width':'auto'}" label="Adicionar categoria" severity="secondary" class="w-full"
-            [routerLink]="['edit']" />
+    <div class="col-12 lg:col-3 md:col-5 sm:col-12 text-center sm:px-3">
+        <p-button label="Adicionar categoria" severity="secondary" class="w-full" styleClass="w-full" [routerLink]="['edit']" [queryParams]="{ action: 'create' }" />
     </div>
 </div>
 <div class="px-3">
@@ -39,15 +38,14 @@
             <tr>
                 <td>{{ category.id }}</td>
                 <td>
-                    <p-avatar [image]="category.image"
-                        styleClass="mr-2" size="large" shape="circle" />
+                    <p-avatar [image]="category.image" styleClass="mr-2" size="large" shape="circle" />
                 </td>
                 <td>{{ category.name }}</td>
                 <td>{{ category.qt_products }}</td>
                 <td> <span [ngClass]="['status-' + category.status.slug]">{{ category.status.name }}</span> </td>
                 <td class="flex justify-content-center">
                     <p-button icon="pi pi-trash" label="Excluir" class="mr-1" severity="secondary" />
-                    <p-button icon="pi pi-pencil" label="Editar" />
+                    <p-button icon="pi pi-pencil" label="Editar"  [routerLink]="['edit']" [queryParams]="{ category: category.id, action: 'update' }" />
                 </td>
             </tr>
         </ng-template>

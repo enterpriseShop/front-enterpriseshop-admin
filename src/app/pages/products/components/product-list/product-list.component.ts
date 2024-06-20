@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { NgClass } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Product } from '../../../../models/Products.model';
 import { ThumbnailProductsComponent } from '../../../components/thumbnail/thumbnail-products/thumbnail-products.component';
@@ -9,6 +9,8 @@ import { ProductsService } from '../../../../services/products/products.service'
 import { ButtonModule } from 'primeng/button';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { PaginatorModule } from 'primeng/paginator';
+import { BreadcrumbComponent } from '../../../components/breadcrumb/breadcrumb.component';
+import { BreadcrumbItems } from '../../../../models/Generics.model';
 
 interface MenuItem {
   icon?: string;
@@ -31,7 +33,8 @@ interface Home {
     FormsModule,
     NgClass,
     ButtonModule,
-    PaginatorModule
+    PaginatorModule,
+    BreadcrumbComponent
   ],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss'
@@ -44,28 +47,33 @@ export class ProductListComponent implements OnInit {
   first: number = 1;
   rows: number = 10;
   totalRecords: number = 41;
+  breadcrumb: BreadcrumbItems[] = [];
   options = [
     { label: 5, value: 5 },
     { label: 10, value: 10 },
     { label: 20, value: 20 },
     { label: 120, value: 120 }
   ];
-
-  home: Home = { icon: 'pi pi-home', routerLink: '/' };
-
-  items: MenuItem[] = [
-    { label: 'Electronics' },
-    { label: 'Computer' },
-    { label: 'Accessories' },
-    { label: 'Keyboard' },
-    { label: 'Wireless' }
-  ];
   products: Product[] = [];
 
+  private router = inject(Router);
   private productService = inject(ProductsService);
 
   ngOnInit(): void {
+    this.checkUrl();
     this.getAllProducts();
+  }
+
+  checkUrl() {
+    const route_url = this.router.url;
+    const urlParts = route_url.split('/');
+    let parts: any[] = [];
+    urlParts.shift();
+
+    urlParts.forEach((item: string) => {
+      parts.push({ label: item });
+    });
+    this.breadcrumb = parts;
   }
 
   getAllProducts() {

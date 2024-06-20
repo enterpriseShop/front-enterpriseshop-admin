@@ -1,15 +1,18 @@
 <div class="grid px-3">
     <div class="col-12 lg:col-6 md:col-6 lg:w-6 md:w-full sm:w-full">
-        <div class="flex flex-column gap-2">
-            <label for="productName">Nome da categoria</label>
-            <input pInputText id="productName" aria-describedby="product-name" placeholder="Eletronicos" />
-        </div>
+        <form [formGroup]="categoryForm">
+            <div class="flex flex-column gap-2">
+                <label for="categoryName">Nome da categoria</label>
+                <input formControlName="name" pInputText id="categoryName" aria-describedby="category-name"
+                    placeholder="Eletronicos" />
+            </div>
+        </form>
     </div>
     <div class="col-12 lg:col-6 md:col-6 h-100 lg:w-6 md:w-full sm:w-full">
         <div class="d-flex justify-content-center w-full align-items-center">
             <div class="flex flex-column gap-2">
-                <label for="productName">Slug</label>
-                <input pInputText id="productName" aria-describedby="product-name" placeholder="eletronicos" />
+                <label for="categorySlug">Status</label>
+                <p-dropdown [style]="{'width':'100%'}" [options]="status" [(ngModel)]="selectedStatus" optionLabel="name" dataKey="name" placeholder="Status" />
             </div>
         </div>
     </div>
@@ -18,7 +21,7 @@
         <div class="d-flex justify-content-center w-full align-items-center">
             <div class="flex flex-column gap-2">
                 <div class="box-upload">
-                    Aqui ficará um editor de texto
+                    EDITOR DE TEXTO
                 </div>
             </div>
         </div>
@@ -27,13 +30,13 @@
     <div class="col-12">
         <div class="d-flex justify-content-center w-full align-items-center">
             <div class="box-upload">
-                upload
+                ÁREA DE UPLOAD
             </div>
         </div>
     </div>
 </div>
 
 <div class="flex justify-content-end gap-3 mt-1 px-3">
-    <p-button label="Cancelar" severity="secondary" />
+    <p-button label="Cancelar" severity="secondary" [routerLink]="['/dashboard/categories']" />
     <p-button icon="pi pi-save" label="Salvar" />
 </div>
