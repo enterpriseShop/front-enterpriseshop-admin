@@ -21,12 +21,16 @@ import { ActivatedRoute } from '@angular/router';
 export class CategoryEditComponent implements OnInit {
 
   errorFielfd: boolean = true;
-  title_component: string = "Adicionar nova categoria";
+  title_component: string = "Adicionar categoria";
 
   constructor(
+    private actvRoute: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
+    this.actvRoute.queryParams.subscribe((p: any) => {
+      this.title_component = p['action'] == 'create' ? "Adicionar categoria" : "Editar categoria";
+    });
   }
 
 }

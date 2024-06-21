@@ -9,6 +9,7 @@ import { StatusService } from '../../../../services/status/status.service';
 import { Status } from '../../../../models/Status.model';
 import { DropdownModule } from 'primeng/dropdown';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @Component({
   selector: 'app-category-form',
@@ -20,7 +21,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     DropdownModule,
     FormsModule,
     ProgressSpinnerModule,
-    RouterLink
+    RouterLink,
+    SkeletonModule
   ],
   templateUrl: './category-form.component.html',
   styleUrl: './category-form.component.scss'
@@ -48,6 +50,10 @@ export class CategoryFormComponent implements OnInit {
         }, 1500);
       }
     });
+
+    setTimeout(() => {
+      this.loading = true;
+    }, 3000);
 
     this.initForm();
     this.getAllStatus();

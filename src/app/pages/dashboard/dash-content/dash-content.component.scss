@@ -20,6 +20,96 @@
     justify-content: space-between;
 }
 
+
+.widgets {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+}
+
+.widget {
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #333;
+}
+
+.widget-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.widget-icon {
+    font-size: 3.5rem;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.widget-info {
+    text-align: left;
+    padding: 16px;
+}
+
+.widget-title {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.widget-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.chart-container {
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos específicos para cada widget */
+.widget.total-vendas {
+    background-color: #fdebd0;
+}
+
+.widget.total-vendas .widget-icon {
+    color: #f5b041;
+}
+
+.widget.numero-pedidos {
+    background-color: #dff0d8;
+}
+
+.widget.numero-pedidos .widget-icon {
+    color: #5cb85c;
+}
+
+.widget.produtos-estoque {
+    background-color: #d9edf7;
+}
+
+.widget.produtos-estoque .widget-icon {
+    color: #06b0e4;
+}
+
+.widget.clientes-registrados {
+    background-color: #fcf8e3;
+}
+
+.widget.clientes-registrados .widget-icon {
+    color: #f0ad4e;
+}
+
 .container {
     grid-template-areas:
         'order mini-cards';

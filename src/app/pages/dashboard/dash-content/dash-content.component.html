@@ -1,23 +1,56 @@
-<div class="flex justify-content-center mt-3">
-    <div class="container w-11">
+<div class="widgets p-3">
+    <div class="widget total-vendas shadow-3">
+        <div class="widget-content">
+            <i class="widget-icon ri-money-dollar-circle-line"></i>
+            <div class="widget-info" style="color: #f5b041;">
+                <h3 class="widget-title">Total de Vendas</h3>
+                <p class="widget-value text-right">250</p>
+            </div>
+        </div>
+    </div>
+    <div class="widget numero-pedidos shadow-3">
+        <div class="widget-content">
+            <i class="widget-icon ri-shopping-cart-line"></i>
+            <div class="widget-info" style="color: #5cb85c;">
+                <h3 class="widget-title">Número de Pedidos</h3>
+                <p class="widget-value text-right">150</p>
+            </div>
+        </div>
+    </div>
+    <div class="widget produtos-estoque shadow-3">
+        <div class="widget-content">
+            <i class="widget-icon ri-archive-line"></i>
+            <div class="widget-info" style="color: #06b0e4;">
+                <h3 class="widget-title">Produtos em Estoque</h3>
+                <p class="widget-value text-right">300</p>
+            </div>
+        </div>
+    </div>
+    <div class="widget clientes-registrados shadow-3">
+        <div class="widget-content">
+            <i class="widget-icon ri-user-line"></i>
+            <div class="widget-info" style="color: #f0ad4e;">
+                <h3 class="widget-title">Clientes Registrados</h3>
+                <p class="widget-value text-right">500</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="flex justify-content-center px-3">
+    <div class="container w-full">
         <div class="order">
-            <p-card header="Simple Card" styleClass="h-auto lg:h-full md:h-full">
-                <p>
-                    Lorem ipsum dolor sit amet...
-                </p>
-                <p-divider />
-                <p>
-                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium...
-                </p>
-                <p-divider />
-                <p>
-                    At vero eos et accusamus et iusto odio dignissimos...
-                </p>
-                <p-divider />
-                <p>
-                    Temporibus autem quibusdam et aut officiis...
-                </p>
-                <p-divider />
+            <p-card header="Pedidos" styleClass="h-auto lg:h-full md:h-full px-3">
+                @for (item of orders; track $index) {
+                    <div class="flex justify-content-between">
+                        <p>{{ '#' + item.order_id }}</p>
+                        <p>{{ item.user_id }}</p>
+                        <p>{{ item.items[0].product_id }}</p>
+                        <p>{{ item.items[0].quantity }}</p>
+                        <p>{{ item.status }}</p>
+                    </div>
+                    <p-divider />
+                }
             </p-card>
         </div>
         <div class="mini-cards" styleClass="h-full">
