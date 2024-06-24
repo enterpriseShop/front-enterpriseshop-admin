@@ -1,38 +1,69 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ProductsService } from '../../../services/products/products.service';
 
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { DividerModule } from 'primeng/divider';
-import { NgStyle } from '@angular/common';
+import { CurrencyPipe, NgClass, NgStyle } from '@angular/common';
+import { DataViewModule } from 'primeng/dataview';
+import { TagModule } from 'primeng/tag';
+import { TableModule } from 'primeng/table';
+import { Product } from '../../../models/Products.model';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
+import { DashOrdersComponent } from '../dash-orders/dash-orders.component';
 
 @Component({
   selector: 'app-dash-content',
   standalone: true,
-  imports: [CardModule, ButtonModule, DividerModule, NgStyle],
+  imports: [
+    CardModule,
+    ButtonModule,
+    DividerModule,
+    NgStyle,
+    NgClass,
+    DataViewModule,
+    TagModule,
+    TableModule,
+    CurrencyPipe,
+    AvatarModule,
+    AvatarGroupModule,
+    DashOrdersComponent
+  ],
   templateUrl: './dash-content.component.html',
   styleUrl: './dash-content.component.scss'
 })
-export class DashContentComponent {
+export class DashContentComponent implements OnInit {
 
-  dashOrders: any[] = [
-    {
-      title: "Simple Card 1",
-      info: "Lorem ipsum dolor sit amet 1111..."
-    },
-    {
-      title: "Simple Card 2",
-      info: "Lorem ipsum dolor sit amet 2222..."
-    },
-    {
-      title: "Simple Card 3",
-      info: "Lorem ipsum dolor sit amet 3333..."
-    }
-  ];
+  products: Product[] = [];
 
-  orders = [
-    { "order_id": 1, "user_id": "Emily", "items": [{ "product_id": "Produto 01", "quantity": 2 }, { "product_id": 3, "quantity": 1 }], "total_price": 849.97, "status": "Shipped" },
-    { "order_id": 2, "user_id": "João", "items": [{ "product_id": "Produto 02", "quantity": 1 }, { "product_id": 7, "quantity": 1 }], "total_price": 1149.98, "status": "Delivered" },
-    { "order_id": 3, "user_id": "Djoor", "items": [{ "product_id": "Produto 04", "quantity": 1 }, { "product_id": 8, "quantity": 1 }], "total_price": 599.98, "status": "Processing" }
-  ]
+  constructor(
+    private prodService: ProductsService
+  ) { }
+
+  ngOnInit(): void {
+    this.listBestSelling();
+  }
+
+  listBestSelling() {
+
+    this.prodService.getAllProducts(1, 30).subscribe({
+      next: (data) => {
+        let filterProds = data.slice(0, 5);
+        filterProds.forEach((item: Product) => {
+          item['amount'] = item.stock * item.price;
+        })
+        this.products = filterProds;
+        console.log(this.products)
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
+  gerarNumeroAleatorio(min: number, max: number) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
 
 }

@@ -1,4 +1,4 @@
-<div class="widgets p-3">
+<div class="widgets w-full p-2">
     <div class="widget total-vendas shadow-3">
         <div class="widget-content">
             <i class="widget-icon ri-money-dollar-circle-line"></i>
@@ -37,30 +37,112 @@
     </div>
 </div>
 
-<div class="flex justify-content-center px-3">
-    <div class="container w-full">
-        <div class="order">
-            <p-card header="Pedidos" styleClass="h-auto lg:h-full md:h-full px-3">
-                @for (item of orders; track $index) {
-                    <div class="flex justify-content-between">
-                        <p>{{ '#' + item.order_id }}</p>
-                        <p>{{ item.user_id }}</p>
-                        <p>{{ item.items[0].product_id }}</p>
-                        <p>{{ item.items[0].quantity }}</p>
-                        <p>{{ item.status }}</p>
-                    </div>
-                    <p-divider />
-                }
-            </p-card>
+<div class="grid-graph p-2">
+    <div class="graph p-3 shadow-3" style="background-color: #FFF;">
+        graph
+    </div>
+
+    <div class="orders p-3 shadow-3" style="background-color: #FFF;">
+        <h2>Recent Orders</h2>
+        <app-dash-orders />
+    </div>
+</div>
+
+<div class="grid-content p-2">
+    <div class="item shadow-3">
+        <div class="header pt-3 px-3">
+            <h1>Melhores Produtos</h1>
         </div>
-        <div class="mini-cards" styleClass="h-full">
-            @for (item of dashOrders; track $index) {
-            <p-card [header]="item.title" class="mr-1 mb-1">
-                <p class="m-0">
-                    {{item.info}}
-                </p>
-            </p-card>
-            }
+
+        <div class="px-3">
+            <table class="">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Orders</th>
+                        <th>Stock</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (item of products; track $index) {
+                    <tr>
+                        <td class="product">
+                            <img [src]="item.images[0]" alt="Shirt">
+                            <div class="product-info">
+                                <span>Branded T-Shirts</span>
+                                <small>24 Apr 2021</small>
+                            </div>
+                        </td>
+                        <td class="column">
+                            <span> {{ item.price | currency }} </span>
+                            <small>Price</small>
+                        </td>
+                        <td class="column">
+                            <span style="font-size: 13px;"> {{ item.status.name }} </span>
+                            <small>Status</small>
+                        </td>
+                        <td class="column">
+                            <span> {{ item.stock }} </span>
+                            <small>Stock</small>
+                        </td>
+                        <td class="column">
+                            <span> {{ item.amount | currency }} </span>
+                            <small>Amount</small>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="item shadow-3">
+        <div class="header pt-3 px-3">
+            <h1>Mais vendidos</h1>
+        </div>
+
+        <div class="px-3">
+            <table class="">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Orders</th>
+                        <th>Stock</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (item of products; track $index) {
+                    <tr>
+                        <td class="product">
+                            <img [src]="item.images[0]" alt="Shirt">
+                            <div class="product-info">
+                                <span>Branded T-Shirts</span>
+                                <small>24 Apr 2021</small>
+                            </div>
+                        </td>
+                        <td class="column">
+                            <span> {{ item.price | currency }} </span>
+                            <small>Price</small>
+                        </td>
+                        <td class="column">
+                            <span style="font-size: 13px;"> {{ item.status.name }} </span>
+                            <small>Status</small>
+                        </td>
+                        <td class="column">
+                            <span> {{ item.stock }} </span>
+                            <small>Stock</small>
+                        </td>
+                        <td class="column">
+                            <span> {{ item.amount | currency }} </span>
+                            <small>Amount</small>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

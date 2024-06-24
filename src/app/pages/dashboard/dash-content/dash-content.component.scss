@@ -1,151 +1,300 @@
 .cards {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .container {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
 }
 
 .order {
-    grid-area: order;
+  grid-area: order;
 }
 
 .mini-cards {
-    grid-area: mini-cards;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  grid-area: mini-cards;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-
 .widgets {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  justify-content: center;
+  gap: 20px;
 }
 
 .widget {
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: #333;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #333;
 }
 
 .widget-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
 }
 
 .widget-icon {
-    font-size: 3.5rem;
-    margin-right: 10px;
-    vertical-align: middle;
+  font-size: 3.5rem;
+  margin-right: 10px;
+  vertical-align: middle;
 }
 
 .widget-info {
-    text-align: left;
-    padding: 16px;
+  text-align: left;
+  padding: 16px;
 }
 
 .widget-title {
-    font-size: 1rem;
-    margin: 0;
+  font-size: 1rem;
+  margin: 0;
 }
 
 .widget-value {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-top: 5px;
-    margin-bottom: 5px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .chart-container {
-    padding: 20px;
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Estilos específicos para cada widget */
 .widget.total-vendas {
-    background-color: #fdebd0;
+  background-color: #fdebd0;
 }
 
 .widget.total-vendas .widget-icon {
-    color: #f5b041;
+  color: #f5b041;
 }
 
 .widget.numero-pedidos {
-    background-color: #dff0d8;
+  background-color: #dff0d8;
 }
 
 .widget.numero-pedidos .widget-icon {
-    color: #5cb85c;
+  color: #5cb85c;
 }
 
 .widget.produtos-estoque {
-    background-color: #d9edf7;
+  background-color: #d9edf7;
 }
 
 .widget.produtos-estoque .widget-icon {
-    color: #06b0e4;
+  color: #06b0e4;
 }
 
 .widget.clientes-registrados {
-    background-color: #fcf8e3;
+  background-color: #fcf8e3;
 }
 
 .widget.clientes-registrados .widget-icon {
-    color: #f0ad4e;
+  color: #f0ad4e;
 }
 
 .container {
-    grid-template-areas:
-        'order mini-cards';
+  grid-template-areas:
+    'order mini-cards';
 }
 
 @media (max-width: 992px) {
 
-    .container {
-        grid-template-columns: 1fr;
-        grid-template-areas:
-            'mini-cards'
-            'order';
-    }
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'mini-cards'
+      'order';
+  }
 
-    .mini-cards {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-    }
+  .mini-cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
 
-    .mini-card {
-        flex: 0 0 auto;
-        max-width: none;
-    }
+  .mini-card {
+    flex: 0 0 auto;
+    max-width: none;
+  }
 }
 
 @media (max-width: 767px) {
 
-    .mini-cards {
-        flex: 0 0 auto;
-        flex-direction: column;
-        width: 100%;
-    }
+  .mini-cards {
+    flex: 0 0 auto;
+    flex-direction: column;
+    width: 100%;
+  }
 
-    .mini-card {
-        flex: 0 0 auto;
-        max-width: none;
-    }
+  .mini-card {
+    flex: 0 0 auto;
+    max-width: none;
+  }
+}
+
+// BOX Best Selling Products
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.sort-by {
+  font-size: 0.9em;
+  color: #888;
+}
+
+.sort-by span {
+  color: #333;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  display: none;
+}
+
+tbody tr {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+tbody tr:last-child {
+  border-bottom: none;
+}
+
+td {
+  text-align: left;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+td.product {
+  flex: 2;
+}
+
+td.column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+td img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  border-radius: 5px;
+  vertical-align: middle;
+}
+
+td .product-info {
+  display: flex;
+  flex-direction: column;
+}
+
+td .product-info span {
+  font-weight: bold;
+}
+
+td .column span {
+  font-weight: bold;
+}
+
+td small {
+  color: #888;
+}
+
+.out-of-stock {
+  color: #fa8994;
+}
+
+.tag {
+  background-color: #feede9;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  margin: 0 2px;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+.grid-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.item {
+  background-color: #FFF;
+}
+
+@media (max-width: 576px) {
+
+  .grid-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+.grid-graph {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+}
+
+@media (max-width: 576px) {
+
+  .grid-graph {
+    grid-template-columns: 1fr;
+  }
 }

@@ -12,4 +12,5 @@ export interface Product {
     stock: number;
     category: Category;
     status: Status;
+    amount?: number;
 }
