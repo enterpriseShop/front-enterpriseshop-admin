@@ -1,38 +1,131 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ProductsService } from '../../../services/products/products.service';
 
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { DividerModule } from 'primeng/divider';
-import { NgStyle } from '@angular/common';
+import { CurrencyPipe, NgClass, NgStyle } from '@angular/common';
+import { DataViewModule } from 'primeng/dataview';
+import { TagModule } from 'primeng/tag';
+import { TableModule } from 'primeng/table';
+import { Product } from '../../../models/Products.model';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
 
 @Component({
   selector: 'app-dash-content',
   standalone: true,
-  imports: [CardModule, ButtonModule, DividerModule, NgStyle],
+  imports: [
+    CardModule,
+    ButtonModule,
+    DividerModule,
+    NgStyle,
+    NgClass,
+    DataViewModule,
+    TagModule,
+    TableModule,
+    CurrencyPipe,
+    AvatarModule,
+    AvatarGroupModule
+  ],
   templateUrl: './dash-content.component.html',
   styleUrl: './dash-content.component.scss'
 })
-export class DashContentComponent {
+export class DashContentComponent implements OnInit {
 
-  dashOrders: any[] = [
+  products: Product[] = [];
+
+  orders: any[] = [
     {
-      title: "Simple Card 1",
-      info: "Lorem ipsum dolor sit amet 1111..."
+      "order_id": "#VZ2112",
+      "customer": {
+        "name": "Alex Smith",
+        "image_url": "https://via.placeholder.com/40"
+      },
+      "product": "Clothes",
+      "amount": "$109.00",
+      "vendor": "Zoetic Fashion",
+      "status": "Paid",
+      "rating": {
+        "score": 5.0,
+        "votes": 61
+      }
     },
     {
-      title: "Simple Card 2",
-      info: "Lorem ipsum dolor sit amet 2222..."
+      "order_id": "#VZ2111",
+      "customer": {
+        "name": "Jansh Brown",
+        "image_url": "https://via.placeholder.com/40"
+      },
+      "product": "Kitchen Storage",
+      "amount": "$149.00",
+      "vendor": "Micro Design",
+      "status": "Pending",
+      "rating": {
+        "score": 4.5,
+        "votes": 61
+      }
     },
     {
-      title: "Simple Card 3",
-      info: "Lorem ipsum dolor sit amet 3333..."
+      "order_id": "#VZ2109",
+      "customer": {
+        "name": "Ayaan Bowen",
+        "image_url": "https://via.placeholder.com/40"
+      },
+      "product": "Bike Accessories",
+      "amount": "$215.00",
+      "vendor": "Nesta Technologies",
+      "status": "Paid",
+      "rating": {
+        "score": 4.9,
+        "votes": 89
+      }
+    },
+    {
+      "order_id": "#VZ2108",
+      "customer": {
+        "name": "Prezy Mark",
+        "image_url": "https://via.placeholder.com/40"
+      },
+      "product": "Furniture",
+      "amount": "$199.00",
+      "vendor": "Syntyce Solutions",
+      "status": "Unpaid",
+      "rating": {
+        "score": 4.3,
+        "votes": 47
+      }
     }
   ];
 
-  orders = [
-    { "order_id": 1, "user_id": "Emily", "items": [{ "product_id": "Produto 01", "quantity": 2 }, { "product_id": 3, "quantity": 1 }], "total_price": 849.97, "status": "Shipped" },
-    { "order_id": 2, "user_id": "João", "items": [{ "product_id": "Produto 02", "quantity": 1 }, { "product_id": 7, "quantity": 1 }], "total_price": 1149.98, "status": "Delivered" },
-    { "order_id": 3, "user_id": "Djoor", "items": [{ "product_id": "Produto 04", "quantity": 1 }, { "product_id": 8, "quantity": 1 }], "total_price": 599.98, "status": "Processing" }
-  ]
+
+  constructor(
+    private prodService: ProductsService
+  ) { }
+
+  ngOnInit(): void {
+    this.listBestSelling();
+  }
+
+  listBestSelling() {
+
+    this.prodService.getAllProducts(1, 30).subscribe({
+      next: (data) => {
+        let filterProds = data.slice(0, 5);
+        filterProds.forEach((item: Product) => {
+          item['amount'] = item.stock * item.price;
+        })
+        this.products = filterProds;
+        console.log(this.products)
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
+  gerarNumeroAleatorio(min: number, max: number) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
 
 }

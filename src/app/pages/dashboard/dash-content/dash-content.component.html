@@ -1,4 +1,4 @@
-<div class="widgets p-3">
+<div class="widgets w-full p-2">
     <div class="widget total-vendas shadow-3">
         <div class="widget-content">
             <i class="widget-icon ri-money-dollar-circle-line"></i>
@@ -37,30 +37,222 @@
     </div>
 </div>
 
-<div class="flex justify-content-center px-3">
-    <div class="container w-full">
-        <div class="order">
-            <p-card header="Pedidos" styleClass="h-auto lg:h-full md:h-full px-3">
-                @for (item of orders; track $index) {
-                    <div class="flex justify-content-between">
-                        <p>{{ '#' + item.order_id }}</p>
-                        <p>{{ item.user_id }}</p>
-                        <p>{{ item.items[0].product_id }}</p>
-                        <p>{{ item.items[0].quantity }}</p>
-                        <p>{{ item.status }}</p>
-                    </div>
-                    <p-divider />
-                }
-            </p-card>
+<div class="grid-content p-2">
+    <div class="item">
+        <div class="header pt-3 px-3">
+            <h1>Melhores Produtos</h1>
         </div>
-        <div class="mini-cards" styleClass="h-full">
-            @for (item of dashOrders; track $index) {
-            <p-card [header]="item.title" class="mr-1 mb-1">
-                <p class="m-0">
-                    {{item.info}}
-                </p>
-            </p-card>
-            }
+
+        <div class="px-3">
+            <table class="">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Orders</th>
+                        <th>Stock</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (item of products; track $index) {
+                    <tr>
+                        <td class="product">
+                            <img [src]="item.images[0]" alt="Shirt">
+                            <div class="product-info">
+                                <span>Branded T-Shirts</span>
+                                <small>24 Apr 2021</small>
+                            </div>
+                        </td>
+                        <td class="column">
+                            <span> {{ item.price | currency }} </span>
+                            <small>Price</small>
+                        </td>
+                        <td class="column">
+                            <span style="font-size: 13px;"> {{ item.status.name }} </span>
+                            <small>Status</small>
+                        </td>
+                        <td class="column">
+                            <span> {{ item.stock }} </span>
+                            <small>Stock</small>
+                        </td>
+                        <td class="column">
+                            <span> {{ item.amount | currency }} </span>
+                            <small>Amount</small>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
         </div>
+    </div>
+    <div class="item">
+        <div class="header pt-3 px-3">
+            <h1>Mais vendidos</h1>
+        </div>
+
+        <div class="px-3">
+            <table class="">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Orders</th>
+                        <th>Stock</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (item of products; track $index) {
+                    <tr>
+                        <td class="product">
+                            <img [src]="item.images[0]" alt="Shirt">
+                            <div class="product-info">
+                                <span>Branded T-Shirts</span>
+                                <small>24 Apr 2021</small>
+                            </div>
+                        </td>
+                        <td class="column">
+                            <span> {{ item.price | currency }} </span>
+                            <small>Price</small>
+                        </td>
+                        <td class="column">
+                            <span style="font-size: 13px;"> {{ item.status.name }} </span>
+                            <small>Status</small>
+                        </td>
+                        <td class="column">
+                            <span> {{ item.stock }} </span>
+                            <small>Stock</small>
+                        </td>
+                        <td class="column">
+                            <span> {{ item.amount | currency }} </span>
+                            <small>Amount</small>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="grid-graph p-2">
+    <div class="graph p-3" style="background-color: #FFF;">
+        graph
+    </div>
+
+    <div class="orders p-3" style="background-color: #FFF;">
+        <h2>Recent Orders</h2>
+
+        <p-table [value]="orders">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="id">
+                        Order ID <p-sortIcon field="id" />
+                    </th>
+                    <th pSortableColumn="customer.name">
+                        Cliente <p-sortIcon field="customer.name" />
+                    </th>
+                    <th pSortableColumn="product">
+                        Produto <p-sortIcon field="product" />
+                    </th>
+                    <th pSortableColumn="amount">
+                        Valor <p-sortIcon field="amount" />
+                    </th>
+                    <th pSortableColumn="vendor">
+                        Vendedor <p-sortIcon field="vendor" />
+                    </th>
+                    <th pSortableColumn="status">
+                        Status <p-sortIcon field="status" />
+                    </th>
+                    <th pSortableColumn="rating.score">
+                        Avaliações <p-sortIcon field="rating.score" />
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-order>
+                <tr>
+                    <td>{{ order.id }}</td>
+                    <td>
+                        <p-avatar [image]="order.customer.image" styleClass="mr-2" size="large" shape="circle" />
+                        <span>{{ order.customer.name }}</span>
+                    </td>
+                    <td>{{ order.product }}</td>
+                    <td>{{ order.amount }}</td>
+                    <td>{{ order.vendor }}</td>
+                    <td>{{ order.status }}</td>
+                    <td>
+                        <div>
+                            <span>{{ order.rating.score }}</span>
+                            <span>{{ order.rating.votes + ' (votos)' }}</span>
+                        </div>
+                    </td>
+
+                </tr>
+            </ng-template>
+        </p-table>
+        <!-- <table class="table-graph">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Product</th>
+                    <th>Amount</th>
+                    <th>Vendor</th>
+                    <th>Status</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="#">#VZ2112</a></td>
+                    <td>
+                        <img src="https://via.placeholder.com/40" alt="Alex Smith" class="customer-img">
+                        <span class="customer-name">Alex Smith</span>
+                    </td>
+                    <td>Clothes</td>
+                    <td>$109.00</td>
+                    <td>Zoetic Fashion</td>
+                    <td class="status-paid">Paid</td>
+                    <td class="rating">5.0 (61 votes)</td>
+                </tr>
+                <tr>
+                    <td><a href="#">#VZ2111</a></td>
+                    <td>
+                        <img src="https://via.placeholder.com/40" alt="Jansh Brown" class="customer-img">
+                        <span class="customer-name">Jansh Brown</span>
+                    </td>
+                    <td>Kitchen Storage</td>
+                    <td>$149.00</td>
+                    <td>Micro Design</td>
+                    <td class="status-pending">Pending</td>
+                    <td class="rating">4.5 (61 votes)</td>
+                </tr>
+                <tr>
+                    <td><a href="#">#VZ2109</a></td>
+                    <td>
+                        <img src="https://via.placeholder.com/40" alt="Ayaan Bowen" class="customer-img">
+                        <span class="customer-name">Ayaan Bowen</span>
+                    </td>
+                    <td>Bike Accessories</td>
+                    <td>$215.00</td>
+                    <td>Nesta Technologies</td>
+                    <td class="status-paid">Paid</td>
+                    <td class="rating">4.9 (89 votes)</td>
+                </tr>
+                <tr>
+                    <td><a href="#">#VZ2108</a></td>
+                    <td>
+                        <img src="https://via.placeholder.com/40" alt="Prezy Mark" class="customer-img">
+                        <span class="customer-name">Prezy Mark</span>
+                    </td>
+                    <td>Furniture</td>
+                    <td>$199.00</td>
+                    <td>Syntyce Solutions</td>
+                    <td class="status-unpaid">Unpaid</td>
+                    <td class="rating">4.3 (47 votes)</td>
+                </tr>
+            </tbody>
+        </table> -->
     </div>
 </div>
