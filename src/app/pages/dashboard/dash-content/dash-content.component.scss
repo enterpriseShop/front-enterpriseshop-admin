@@ -285,3 +285,16 @@ td small {
     grid-template-columns: 1fr;
   }
 }
+
+.grid-graph {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+}
+
+@media (max-width: 576px) {
+
+  .grid-graph {
+    grid-template-columns: 1fr;
+  }
+}

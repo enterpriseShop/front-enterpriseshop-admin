@@ -37,8 +37,19 @@
     </div>
 </div>
 
+<div class="grid-graph p-2">
+    <div class="graph p-3 shadow-3" style="background-color: #FFF;">
+        graph
+    </div>
+
+    <div class="orders p-3 shadow-3" style="background-color: #FFF;">
+        <h2>Recent Orders</h2>
+        <app-dash-orders />
+    </div>
+</div>
+
 <div class="grid-content p-2">
-    <div class="item">
+    <div class="item shadow-3">
         <div class="header pt-3 px-3">
             <h1>Melhores Produtos</h1>
         </div>
@@ -86,7 +97,7 @@
             </table>
         </div>
     </div>
-    <div class="item">
+    <div class="item shadow-3">
         <div class="header pt-3 px-3">
             <h1>Mais vendidos</h1>
         </div>
@@ -133,126 +144,5 @@
                 </tbody>
             </table>
         </div>
-    </div>
-</div>
-
-<div class="grid-graph p-2">
-    <div class="graph p-3" style="background-color: #FFF;">
-        graph
-    </div>
-
-    <div class="orders p-3" style="background-color: #FFF;">
-        <h2>Recent Orders</h2>
-
-        <p-table [value]="orders">
-            <ng-template pTemplate="header">
-                <tr>
-                    <th pSortableColumn="id">
-                        Order ID <p-sortIcon field="id" />
-                    </th>
-                    <th pSortableColumn="customer.name">
-                        Cliente <p-sortIcon field="customer.name" />
-                    </th>
-                    <th pSortableColumn="product">
-                        Produto <p-sortIcon field="product" />
-                    </th>
-                    <th pSortableColumn="amount">
-                        Valor <p-sortIcon field="amount" />
-                    </th>
-                    <th pSortableColumn="vendor">
-                        Vendedor <p-sortIcon field="vendor" />
-                    </th>
-                    <th pSortableColumn="status">
-                        Status <p-sortIcon field="status" />
-                    </th>
-                    <th pSortableColumn="rating.score">
-                        Avaliações <p-sortIcon field="rating.score" />
-                    </th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-order>
-                <tr>
-                    <td>{{ order.id }}</td>
-                    <td>
-                        <p-avatar [image]="order.customer.image" styleClass="mr-2" size="large" shape="circle" />
-                        <span>{{ order.customer.name }}</span>
-                    </td>
-                    <td>{{ order.product }}</td>
-                    <td>{{ order.amount }}</td>
-                    <td>{{ order.vendor }}</td>
-                    <td>{{ order.status }}</td>
-                    <td>
-                        <div>
-                            <span>{{ order.rating.score }}</span>
-                            <span>{{ order.rating.votes + ' (votos)' }}</span>
-                        </div>
-                    </td>
-
-                </tr>
-            </ng-template>
-        </p-table>
-        <!-- <table class="table-graph">
-            <thead>
-                <tr>
-                    <th>Order ID</th>
-                    <th>Customer</th>
-                    <th>Product</th>
-                    <th>Amount</th>
-                    <th>Vendor</th>
-                    <th>Status</th>
-                    <th>Rating</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><a href="#">#VZ2112</a></td>
-                    <td>
-                        <img src="https://via.placeholder.com/40" alt="Alex Smith" class="customer-img">
-                        <span class="customer-name">Alex Smith</span>
-                    </td>
-                    <td>Clothes</td>
-                    <td>$109.00</td>
-                    <td>Zoetic Fashion</td>
-                    <td class="status-paid">Paid</td>
-                    <td class="rating">5.0 (61 votes)</td>
-                </tr>
-                <tr>
-                    <td><a href="#">#VZ2111</a></td>
-                    <td>
-                        <img src="https://via.placeholder.com/40" alt="Jansh Brown" class="customer-img">
-                        <span class="customer-name">Jansh Brown</span>
-                    </td>
-                    <td>Kitchen Storage</td>
-                    <td>$149.00</td>
-                    <td>Micro Design</td>
-                    <td class="status-pending">Pending</td>
-                    <td class="rating">4.5 (61 votes)</td>
-                </tr>
-                <tr>
-                    <td><a href="#">#VZ2109</a></td>
-                    <td>
-                        <img src="https://via.placeholder.com/40" alt="Ayaan Bowen" class="customer-img">
-                        <span class="customer-name">Ayaan Bowen</span>
-                    </td>
-                    <td>Bike Accessories</td>
-                    <td>$215.00</td>
-                    <td>Nesta Technologies</td>
-                    <td class="status-paid">Paid</td>
-                    <td class="rating">4.9 (89 votes)</td>
-                </tr>
-                <tr>
-                    <td><a href="#">#VZ2108</a></td>
-                    <td>
-                        <img src="https://via.placeholder.com/40" alt="Prezy Mark" class="customer-img">
-                        <span class="customer-name">Prezy Mark</span>
-                    </td>
-                    <td>Furniture</td>
-                    <td>$199.00</td>
-                    <td>Syntyce Solutions</td>
-                    <td class="status-unpaid">Unpaid</td>
-                    <td class="rating">4.3 (47 votes)</td>
-                </tr>
-            </tbody>
-        </table> -->
     </div>
 </div>

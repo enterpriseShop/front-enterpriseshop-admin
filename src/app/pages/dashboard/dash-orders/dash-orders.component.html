@@ -1,0 +1,37 @@
+<p-table [value]="orders">
+    <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="id">
+                Order ID
+            </th>
+            <th pSortableColumn="customer.name">
+                Cliente
+            </th>
+            <th pSortableColumn="product">
+                Produto
+            </th>
+            <th pSortableColumn="amount">
+                Valor
+            </th>
+            <th pSortableColumn="product">
+                Vendedor
+            </th>
+            <th pSortableColumn="status">
+                Status
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-order>
+        <tr>
+            <td>{{ order.order_id }}</td>
+            <td class="flex align-items-center">
+                <p-avatar [image]="order.customer.image" styleClass="mr-2" size="large" shape="circle" />
+                <span>{{ order.customer.name }}</span>
+            </td>
+            <td>{{ order.product }}</td>
+            <td>{{ order.amount }}</td>
+            <td>{{ order.vendor }}</td>
+            <td>{{ order.status }}</td>
+        </tr>
+    </ng-template>
+</p-table>
