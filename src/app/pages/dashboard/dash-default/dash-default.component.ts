@@ -11,7 +11,6 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { MenuList } from '../../../models/Generics.model';
 
-
 @Component({
   selector: 'app-dash-default',
   standalone: true,
@@ -25,37 +24,40 @@ import { MenuList } from '../../../models/Generics.model';
     RippleModule,
     StyleClassModule,
     NgClass,
-    ToolbarModule
+    ToolbarModule,
   ],
   templateUrl: './dash-default.component.html',
-  styleUrl: './dash-default.component.scss'
+  styleUrl: './dash-default.component.scss',
 })
 export class DashDefaultComponent {
-
   isSidebarOpen: boolean = false;
   sidebarVisible: boolean = false;
 
   menu: MenuList[] = [
     {
-      label: "Dashboard",
-      router: "/dashboard",
-      icon: "ri-dashboard-line mr-2"
+      label: 'Dashboard',
+      router: '/dashboard',
+      icon: 'ri-dashboard-line mr-2',
     },
     {
-      label: "Produtos",
-      router: "products",
-      icon: "ri-box-3-line mr-2"
+      label: 'Produtos',
+      router: 'products',
+      icon: 'ri-box-3-line mr-2',
     },
     {
-      label: "Categorias",
-      router: "categories",
-      icon: "ri-list-unordered mr-2"
-    }
+      label: 'Categorias',
+      router: 'categories',
+      icon: 'ri-list-unordered mr-2',
+    },
+    {
+      label: 'Pedidos',
+      router: 'orders',
+      icon: 'ri-file-list-line mr-2',
+    },
   ];
 
   crtlMenu(evt: any) {
     // this.toggleSidebar();
     this.sidebarVisible = evt;
   }
-
 }

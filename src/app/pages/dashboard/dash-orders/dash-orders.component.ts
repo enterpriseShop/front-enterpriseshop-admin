@@ -2,6 +2,12 @@ import { Component } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
+import { NgSwitch, NgSwitchCase } from '@angular/common';
+
+interface Column {
+  field: string;
+  header: string;
+}
 
 @Component({
   selector: 'app-dash-orders',
@@ -9,14 +15,23 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
   imports: [
     TableModule,
     AvatarModule,
-    AvatarGroupModule
+    AvatarGroupModule,
+    NgSwitch,
+    NgSwitchCase
   ],
   templateUrl: './dash-orders.component.html',
   styleUrl: './dash-orders.component.scss'
 })
 export class DashOrdersComponent {
 
-  
+  columns: Column[] = [
+    { field: 'order_id', header: 'ID Pedido' },
+    { field: 'customer.name', header: 'Cliente' },
+    { field: 'product', header: 'Produto' },
+    { field: 'amount', header: 'Valor' },
+    { field: 'vendor', header: 'Vendedor' },
+    { field: 'status', header: 'Status' }
+  ];
 
   orders: any[] = [
     {

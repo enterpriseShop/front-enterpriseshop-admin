@@ -20,12 +20,22 @@ import { Status } from '../../../../models/Status.model';
 @Component({
   selector: 'app-category-list',
   standalone: true,
-  imports: [AvatarModule, AvatarGroupModule, FormsModule, TableModule, ButtonModule, RouterLink, BreadcrumbComponent, InputTextModule, NgClass, DropdownModule],
+  imports: [
+    AvatarModule,
+    AvatarGroupModule,
+    FormsModule,
+    TableModule,
+    ButtonModule,
+    RouterLink,
+    BreadcrumbComponent,
+    InputTextModule,
+    NgClass,
+    DropdownModule,
+  ],
   templateUrl: './category-list.component.html',
-  styleUrl: './category-list.component.scss'
+  styleUrl: './category-list.component.scss',
 })
 export class CategoryListComponent implements OnInit {
-
   loading: boolean = false;
   searchValue: string | undefined;
   selectedStatus: Status | undefined;
@@ -36,10 +46,9 @@ export class CategoryListComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private http: HttpClient,
     private statusService: StatusService,
     private catService: CategoriesService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.allCategories();
@@ -52,7 +61,7 @@ export class CategoryListComponent implements OnInit {
       next: (data) => {
         let statusFiltered: Status[] = [];
         data.forEach((item: Status) => {
-          if (item.enabled.includes("categories")) {
+          if (item.enabled.includes('categories')) {
             statusFiltered.push(item);
           }
         });
@@ -61,7 +70,7 @@ export class CategoryListComponent implements OnInit {
       },
       error: (err) => {
         console.log('GET ALL STATUS ERR:', err);
-      }
+      },
     });
   }
 
@@ -85,13 +94,12 @@ export class CategoryListComponent implements OnInit {
       },
       error: (err) => {
         console.log('GET ALL CATEGORY ERR:', err);
-      }
+      },
     });
   }
 
   clear(table: Table) {
     table.clear();
-    this.searchValue = ''
+    this.searchValue = '';
   }
-
 }
