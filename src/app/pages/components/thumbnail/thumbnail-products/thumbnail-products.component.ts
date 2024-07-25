@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { Product } from '../../../../models/Products.model';
+import { RouterLink } from '@angular/router';
 
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
-import { RouterLink } from '@angular/router';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @Component({
   selector: 'app-thumbnail-products',
@@ -12,11 +13,14 @@ import { RouterLink } from '@angular/router';
     CardModule,
     ButtonModule,
     RouterLink,
+    SkeletonModule
   ],
   templateUrl: './thumbnail-products.component.html',
   styleUrl: './thumbnail-products.component.scss'
 })
 export class ThumbnailProductsComponent {
+
+  sizeSkeleton: string = '4rem';
 
   @Input() products: Product = {
     title: '',

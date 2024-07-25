@@ -1,0 +1,55 @@
+.dashboard {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 100%;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 23%;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.status-item:last-child {
+  border-right: none;
+}
+
+.status-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  margin-right: 10px;
+  color: var(--surface-700);
+}
+
+.status-icon img {
+  width: 24px;
+  height: 24px;
+}
+
+.status-info {
+  text-align: left;
+}
+
+.status-number {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: var(--surface-500);
+}
+
+.status-label {
+  color: var(--surface-700);
+}

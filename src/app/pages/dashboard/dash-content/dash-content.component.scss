@@ -115,41 +115,6 @@
     'order mini-cards';
 }
 
-@media (max-width: 992px) {
-
-  .container {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      'mini-cards'
-      'order';
-  }
-
-  .mini-cards {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-  }
-
-  .mini-card {
-    flex: 0 0 auto;
-    max-width: none;
-  }
-}
-
-@media (max-width: 767px) {
-
-  .mini-cards {
-    flex: 0 0 auto;
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .mini-card {
-    flex: 0 0 auto;
-    max-width: none;
-  }
-}
-
 // BOX Best Selling Products
 
 .header {
@@ -271,19 +236,12 @@ td small {
 
 .grid-content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
   gap: 20px;
 }
 
 .item {
   background-color: #FFF;
-}
-
-@media (max-width: 576px) {
-
-  .grid-content {
-    grid-template-columns: 1fr;
-  }
 }
 
 .grid-graph {
@@ -292,8 +250,58 @@ td small {
   gap: 20px;
 }
 
+@media (max-width: 992px) {
+
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'mini-cards'
+      'order';
+  }
+
+  .widgets {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .mini-cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
+  .mini-card {
+    flex: 0 0 auto;
+    max-width: none;
+  }
+}
+
+@media (max-width: 767px) {
+
+  .widgets {
+    width: 100%;
+   justify-content: center;
+  }
+
+  .grid-graph {
+    grid-template-columns: 1fr;
+  }
+
+  .mini-cards {
+    flex: 0 0 auto;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .mini-card {
+    flex: 0 0 auto;
+    max-width: none;
+  }
+}
+
 @media (max-width: 576px) {
 
+  .grid-content,
+  .widgets,
   .grid-graph {
     grid-template-columns: 1fr;
   }

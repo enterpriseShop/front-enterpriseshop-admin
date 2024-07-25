@@ -1,148 +1,146 @@
-<div class="widgets w-full p-2">
-    <div class="widget total-vendas shadow-3">
-        <div class="widget-content">
-            <i class="widget-icon ri-money-dollar-circle-line"></i>
-            <div class="widget-info" style="color: #f5b041;">
-                <h3 class="widget-title">Total de Vendas</h3>
-                <p class="widget-value text-right">250</p>
+<div class="w-full p-3">
+    <div class="widgets w-full my-2">
+        <div class="widget total-vendas shadow-3">
+            <div class="widget-content">
+                <i class="widget-icon ri-money-dollar-circle-line"></i>
+                <div class="widget-info" style="color: #f5b041;">
+                    <h3 class="widget-title">Total de Vendas</h3>
+                    <p class="widget-value text-right">250</p>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="widget numero-pedidos shadow-3">
-        <div class="widget-content">
-            <i class="widget-icon ri-shopping-cart-line"></i>
-            <div class="widget-info" style="color: #5cb85c;">
-                <h3 class="widget-title">Número de Pedidos</h3>
-                <p class="widget-value text-right">150</p>
+        <div class="widget numero-pedidos shadow-3">
+            <div class="widget-content">
+                <i class="widget-icon ri-shopping-cart-line"></i>
+                <div class="widget-info" style="color: #5cb85c;">
+                    <h3 class="widget-title">Número de Pedidos</h3>
+                    <p class="widget-value text-right">150</p>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="widget produtos-estoque shadow-3">
-        <div class="widget-content">
-            <i class="widget-icon ri-archive-line"></i>
-            <div class="widget-info" style="color: #06b0e4;">
-                <h3 class="widget-title">Produtos em Estoque</h3>
-                <p class="widget-value text-right">300</p>
+        <div class="widget produtos-estoque shadow-3">
+            <div class="widget-content">
+                <i class="widget-icon ri-archive-line"></i>
+                <div class="widget-info" style="color: #06b0e4;">
+                    <h3 class="widget-title">Produtos em Estoque</h3>
+                    <p class="widget-value text-right">300</p>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="widget clientes-registrados shadow-3">
-        <div class="widget-content">
-            <i class="widget-icon ri-user-line"></i>
-            <div class="widget-info" style="color: #f0ad4e;">
-                <h3 class="widget-title">Clientes Registrados</h3>
-                <p class="widget-value text-right">500</p>
+        <div class="widget clientes-registrados shadow-3">
+            <div class="widget-content">
+                <i class="widget-icon ri-user-line"></i>
+                <div class="widget-info" style="color: #f0ad4e;">
+                    <h3 class="widget-title">Clientes Registrados</h3>
+                    <p class="widget-value text-right">500</p>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-
-<div class="grid-graph p-2">
-    <div class="graph p-3 shadow-3" style="background-color: #FFF;">
-        graph
     </div>
 
-    <div class="orders p-3 shadow-3" style="background-color: #FFF;">
-        <h2>Recent Orders</h2>
+    <div class="item shadow-3">
+        <div class="header pt-1 pl-3">
+            <h2>Pedidos recentes</h2>
+        </div>
         <app-dash-orders />
     </div>
-</div>
 
-<div class="grid-content p-2">
-    <div class="item shadow-3">
-        <div class="header pt-3 px-3">
-            <h1>Melhores Produtos</h1>
-        </div>
+    <div class="grid-content my-2">
+        <div class="item shadow-3">
+            <div class="header pt-3 px-3">
+                <h1>Melhores Produtos</h1>
+            </div>
 
-        <div class="px-3">
-            <table class="">
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Orders</th>
-                        <th>Stock</th>
-                        <th>Amount</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (item of products; track $index) {
-                    <tr>
-                        <td class="product">
-                            <img [src]="item.images[0]" alt="Shirt">
-                            <div class="product-info">
-                                <span>Branded T-Shirts</span>
-                                <small>24 Apr 2021</small>
-                            </div>
-                        </td>
-                        <td class="column">
-                            <span> {{ item.price | currency }} </span>
-                            <small>Price</small>
-                        </td>
-                        <td class="column">
-                            <span style="font-size: 13px;"> {{ item.status.name }} </span>
-                            <small>Status</small>
-                        </td>
-                        <td class="column">
-                            <span> {{ item.stock }} </span>
-                            <small>Stock</small>
-                        </td>
-                        <td class="column">
-                            <span> {{ item.amount | currency }} </span>
-                            <small>Amount</small>
-                        </td>
-                    </tr>
-                    }
-                </tbody>
-            </table>
+            <div class="px-3">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Orders</th>
+                            <th>Stock</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (item of products; track $index) {
+                        <tr>
+                            <td class="product">
+                                <img [src]="item.images[0]" alt="Shirt">
+                                <div class="product-info">
+                                    <span>Branded T-Shirts</span>
+                                    <small>24 Apr 2021</small>
+                                </div>
+                            </td>
+                            <td class="column">
+                                <span> {{ item.price | currency }} </span>
+                                <small>Price</small>
+                            </td>
+                            <td class="column">
+                                <span style="font-size: 13px;"> {{ item.status.name }} </span>
+                                <small>Status</small>
+                            </td>
+                            <td class="column">
+                                <span> {{ item.stock }} </span>
+                                <small>Stock</small>
+                            </td>
+                            <td class="column">
+                                <span> {{ item.amount | currency }} </span>
+                                <small>Amount</small>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-    <div class="item shadow-3">
-        <div class="header pt-3 px-3">
-            <h1>Mais vendidos</h1>
-        </div>
+        <div class="item shadow-3">
+            <div class="header pt-3 px-3">
+                <h1>Mais vendidos</h1>
+            </div>
 
-        <div class="px-3">
-            <table class="">
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Orders</th>
-                        <th>Stock</th>
-                        <th>Amount</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (item of products; track $index) {
-                    <tr>
-                        <td class="product">
-                            <img [src]="item.images[0]" alt="Shirt">
-                            <div class="product-info">
-                                <span>Branded T-Shirts</span>
-                                <small>24 Apr 2021</small>
-                            </div>
-                        </td>
-                        <td class="column">
-                            <span> {{ item.price | currency }} </span>
-                            <small>Price</small>
-                        </td>
-                        <td class="column">
-                            <span style="font-size: 13px;"> {{ item.status.name }} </span>
-                            <small>Status</small>
-                        </td>
-                        <td class="column">
-                            <span> {{ item.stock }} </span>
-                            <small>Stock</small>
-                        </td>
-                        <td class="column">
-                            <span> {{ item.amount | currency }} </span>
-                            <small>Amount</small>
-                        </td>
-                    </tr>
-                    }
-                </tbody>
-            </table>
+            <div class="px-3">
+                <table class="">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Orders</th>
+                            <th>Stock</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (item of products; track $index) {
+                        <tr>
+                            <td class="product">
+                                <img [src]="item.images[0]" alt="Shirt">
+                                <div class="product-info">
+                                    <span>Branded T-Shirts</span>
+                                    <small>24 Apr 2021</small>
+                                </div>
+                            </td>
+                            <td class="column">
+                                <span> {{ item.price | currency }} </span>
+                                <small>Price</small>
+                            </td>
+                            <td class="column">
+                                <span style="font-size: 13px;"> {{ item.status.name }} </span>
+                                <small>Status</small>
+                            </td>
+                            <td class="column">
+                                <span> {{ item.stock }} </span>
+                                <small>Stock</small>
+                            </td>
+                            <td class="column">
+                                <span> {{ item.amount | currency }} </span>
+                                <small>Amount</small>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

@@ -1,0 +1,74 @@
+<div class="p-3">
+  <div class="dashboard shadow-4">
+    @for (item of order_menu; track $index){
+    <div class="status-item">
+      <div class="status-info">
+        <div class="status-number">{{ item.value }}</div>
+        <div class="status-label">{{ item.title }}</div>
+      </div>
+      <div class="status-icon">
+        <i [class]="item.icon"></i>
+      </div>
+    </div>
+    }
+  </div>
+
+  <div class="my-3">
+    <p-table [value]="orders">
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="receiptNumber" style="width: 10%">
+            Pedido <p-sortIcon field="receiptNumber" />
+          </th>
+          <th pSortableColumn="date_order" style="width: 5%">Data</th>
+          <th pSortableColumn="customer.first_name" style="width: 25%">
+            Cliente <p-sortIcon field="customer.first_name" />
+          </th>
+          <th pSortableColumn="value_total" style="width: 20%">
+            Valor <p-sortIcon field="value_total" />
+          </th>
+          <th pSortableColumn="status.name" style="width: 20%">
+            Status <p-sortIcon field="status.name" />
+          </th>
+          <th style="width: 20%" class="text-center">Ações</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-orders>
+        <tr>
+          <td>{{ orders.receiptNumber }}</td>
+          <td>{{ orders.date_order | date : "dd/MM/yyyy" }}</td>
+          <td>
+            <!-- <p-avatar
+              [image]="orders.image"
+              styleClass="mr-2"
+              size="large"
+              shape="circle"
+            /> -->
+            {{ orders.customer.first_name + " " + orders.customer.last_name }}
+          </td>
+          <td>{{ orders.value_total }}</td>
+          <td>
+            <!-- <span [ngClass]="['status-' + orders.status.slug]">{{
+              orders.status.name
+            }}</span> -->
+            {{ orders.status }}
+          </td>
+          <td class="flex justify-content-center">
+            <p-button
+              icon="pi pi-trash"
+              label="Excluir"
+              class="mr-1"
+              severity="secondary"
+            />
+            <p-button
+              icon="pi pi-pencil"
+              label="Editar"
+              [routerLink]="['edit']"
+              [queryParams]="{ category: orders.id, action: 'update' }"
+            />
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
